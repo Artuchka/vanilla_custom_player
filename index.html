@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>video player vanilla js</title>
+		<link rel="stylesheet" href="./style.css" />
+		<script src="/script.js" defer></script>
+	</head>
+	<body>
+		<input type="text" />
+		<div
+			class="wrapper"
+			id="wrapper"
+			data-volumeLevel="muted"
+			data-speed="1"
+		>
+			<div class="inner-wrapper" id="innerWrapper">
+				<video
+					src="./assets/video.mp4"
+					class="video"
+					id="video"
+					autoplay
+				></video>
+				<div class="video-controls" id="videoControls">
+					<div class="play-pause-btn" id="playPauseBtn">
+						<span class="pause">now pause</span>
+						<span class="play">now play</span>
+					</div>
+
+					<div class="volume-btn">
+						<div class="state">
+							<span class="muted">muted</span>
+							<span class="low">low</span>
+							<span class="high">high</span>
+						</div>
+						<input
+							type="range"
+							name="volume"
+							class="volume-range"
+							id="volumeRange"
+						/>
+					</div>
+					<div class="speed-btn" id="speedBtn">
+						<span class="value">1x</span>
+					</div>
+					<div class="theater-btn" id="theaterBtn">
+						<span class="normal">now normal</span
+						><span class="theater">now theater</span>
+					</div>
+					<div class="fullscreen-btn" id="fullscreenBtn">
+						<div class="full">now full</div>
+						<div class="small">now small</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
