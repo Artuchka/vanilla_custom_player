@@ -34,10 +34,25 @@ const toggleFullscreen = () => {
 		wrapper.classList.add("fullscreen")
 	}
 }
+const toggleMiniPlayer = () => {
+	// if (!document.pictureInPictureEnabled) {
+	// 	return false
+	// }
+	if (document.pictureInPictureElement === innerWrapper) {
+		// document.exitPictureInPicture()
+		window.pictureInPictureElement = video
+		wrapper.classList.remove("picture-in-picture")
+	} else {
+		window.pictureInPictureElement = null
+		// video.exitPictureInPicture()
+		wrapper.classList.add("picture-in-picture")
+	}
+}
 
 function skipTime(skipValue) {
 	video.currentTime += skipValue
 }
+
 function skipVolume(skipValue) {
 	const newVolume = Math.max(
 		Math.min(Math.floor(parseFloat(video.volume * 100) + skipValue), 100),
@@ -54,18 +69,30 @@ function keyboardAccessHandler(e) {
 
 	e.preventDefault()
 
-	const TEN_SECONDS = 10
+	const TIME_TEN_SECONDS = 10
 	const VOLUME_TEN_PERCENT = 10
-	// console.log(e)
+	console.log(e)
 	switch (e.key) {
 		case " ":
 			togglePlay()
 			break
+		case "f":
+		case "F":
+			toggleFullscreen()
+			break
+		case "t":
+		case "T":
+			toggleTheater()
+			break
+		case "i":
+		case "I":
+			toggleMiniPlayer()
+			break
 		case "ArrowLeft":
-			skipTime(-1 * TEN_SECONDS)
+			skipTime(-1 * TIME_TEN_SECONDS)
 			break
 		case "ArrowRight":
-			skipTime(TEN_SECONDS)
+			skipTime(TIME_TEN_SECONDS)
 			break
 		case "ArrowUp":
 			skipVolume(VOLUME_TEN_PERCENT)
