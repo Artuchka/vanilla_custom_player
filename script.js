@@ -69,6 +69,7 @@ function handleSpeedChange() {
 
 function onDOMLoaded() {
 	wrapper.dataset.volumeLevel = "muted"
+	volumeRange.value = 0
 	wrapper.dataset.speed = "1"
 	wrapper.classList.add("paused")
 	wrapper.classList.remove("theater")
