@@ -32,9 +32,10 @@
     left: 0;
     right: 0;
     background: linear-gradient(to top, rgba(255, 255, 255, .9), black);
-    height: 3rem;
+    height: 5rem;
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    padding-bottom: 1rem;
     gap: 2rem;
 
     padding-inline: 2rem;
@@ -120,4 +121,31 @@
     opacity: 1;
     scale: 1;
     width: 5rem;
+}
+
+.wrapper .progressbar {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 1rem;
+}
+
+.wrapper .progressbar input {
+    width: 100%;
+}
+
+.wrapper .progressbar input {
+    background-color: transparent;
+}
+
+.wrapper .progressbar input {
+    background-color: gainsboro;
+    height: .3rem;
+    border-radius: 100vmax;
+}
+
+.wrapper .progressbar input::-moz-range-thumb,
+.wrapper .progressbar input::-webkit-slider-thumb {
+    background-color: lightslategray;
+    border: none;
 }

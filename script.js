@@ -7,6 +7,7 @@ const theaterBtn = document.getElementById("theaterBtn")
 const speedBtn = document.getElementById("speedBtn")
 const speedValue = speedBtn.querySelector("span.value")
 const volumeRange = document.getElementById("volumeRange")
+const timeRange = document.getElementById("timeRange")
 
 const togglePlay = () => {
 	if (video.paused) {
@@ -34,19 +35,55 @@ const toggleFullscreen = () => {
 	}
 }
 
+function skipTime(skipValue) {
+	video.currentTime += skipValue
+}
+function skipVolume(skipValue) {
+	const newVolume = Math.max(
+		Math.min(Math.floor(parseFloat(video.volume * 100) + skipValue), 100),
+		0
+	).toString()
+	setVolume(newVolume)
+}
+
 function keyboardAccessHandler(e) {
 	const tagName = e.target.tagName.toLowerCase()
 	if (tagName == "input" || tagName == "select" || tagName == "textarea") {
 		return false
 	}
 
-	console.log({ tagName })
+	e.preventDefault()
+
+	const TEN_SECONDS = 10
+	const VOLUME_TEN_PERCENT = 10
+	// console.log(e)
+	switch (e.key) {
+		case " ":
+			togglePlay()
+			break
+		case "ArrowLeft":
+			skipTime(-1 * TEN_SECONDS)
+			break
+		case "ArrowRight":
+			skipTime(TEN_SECONDS)
+			break
+		case "ArrowUp":
+			skipVolume(VOLUME_TEN_PERCENT)
+			break
+		case "ArrowDown":
+			skipVolume(-1 * VOLUME_TEN_PERCENT)
+			break
+	}
 }
 
 function handleVolumeRangeChange(e) {
 	const value = e.target.value
-	console.log({ value })
+	setVolume(value)
+}
+
+function setVolume(value) {
 	video.volume = parseFloat(value / 100)
+	volumeRange.value = value
 	if (value == 0) {
 		wrapper.dataset.volumeLevel = "muted"
 	} else if (value > 0 && value < 70) {
@@ -67,6 +104,11 @@ function handleSpeedChange() {
 	speedValue.textContent = `${newSpeed}x`
 }
 
+function handleTimeChange(e) {
+	const value = e.target.value
+	console.log({ value })
+}
+
 function onDOMLoaded() {
 	wrapper.dataset.volumeLevel = "muted"
 	volumeRange.value = 0
@@ -78,6 +120,9 @@ function onDOMLoaded() {
 	video.pause()
 	video.volume = 0
 	video.playbackRate = 1
+	timeRange.value = 0
+	timeRange.max = video.duration
+	timeRange.min = 0
 }
 
 playPauseBtn.addEventListener("click", togglePlay)
@@ -87,5 +132,6 @@ fullscreenBtn.addEventListener("click", toggleFullscreen)
 theaterBtn.addEventListener("click", toggleTheater)
 speedBtn.addEventListener("click", handleSpeedChange)
 volumeRange.addEventListener("change", handleVolumeRangeChange)
+timeRange.addEventListener("change", handleTimeChange)
 
 window.addEventListener("DOMContentLoaded", onDOMLoaded)
