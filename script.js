@@ -107,6 +107,11 @@ function handleSpeedChange() {
 function handleTimeChange(e) {
 	const value = e.target.value
 	console.log({ value })
+	video.currentTime = value
+}
+
+function setThumb() {
+	timeRange.value = video.currentTime
 }
 
 function onDOMLoaded() {
@@ -127,6 +132,7 @@ function onDOMLoaded() {
 
 playPauseBtn.addEventListener("click", togglePlay)
 video.addEventListener("click", togglePlay)
+video.addEventListener("timeupdate", setThumb)
 document.addEventListener("keyup", keyboardAccessHandler)
 fullscreenBtn.addEventListener("click", toggleFullscreen)
 theaterBtn.addEventListener("click", toggleTheater)
