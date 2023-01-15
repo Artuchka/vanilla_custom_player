@@ -31,7 +31,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: linear-gradient(to top, rgba(255, 255, 255, .9), black);
+    background: linear-gradient(to bottom, transparent, black);
     height: 5rem;
     display: flex;
     align-items: flex-end;
@@ -132,13 +132,15 @@
 
 .wrapper .progressbar input {
     width: 100%;
-}
-
-.wrapper .progressbar input {
     background-color: transparent;
 }
 
+/* 
 .wrapper .progressbar input {
+}
+
+.wrapper .progressbar input,
+.wrapper .progressbar input::-webkit-slider-runnable-track {
     background-color: gainsboro;
     height: .3rem;
     border-radius: 100vmax;
@@ -148,4 +150,4 @@
 .wrapper .progressbar input::-webkit-slider-thumb {
     background-color: lightslategray;
     border: none;
-}
+} */

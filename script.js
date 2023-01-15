@@ -157,12 +157,18 @@ function onDOMLoaded() {
 	video.volume = 0
 	video.playbackRate = 1
 	timeRange.value = 0
-	timeRange.max = video.duration
+	console.log({ dur: video.duration })
 	timeRange.min = 0
+}
+
+function setMax() {
+	timeRange.max = video.duration
+	console.log({ dur2: video.duration })
 }
 
 playPauseBtn.addEventListener("click", togglePlay)
 video.addEventListener("click", togglePlay)
+video.addEventListener("play", setMax)
 video.addEventListener("timeupdate", setThumb)
 document.addEventListener("keyup", keyboardAccessHandler)
 fullscreenBtn.addEventListener("click", toggleFullscreen)
