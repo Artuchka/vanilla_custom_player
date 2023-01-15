@@ -38,12 +38,12 @@ const toggleMiniPlayer = () => {
 	// if (!document.pictureInPictureEnabled) {
 	// 	return false
 	// }
-	if (document.pictureInPictureElement === innerWrapper) {
-		// document.exitPictureInPicture()
-		window.pictureInPictureElement = video
+	console.log("doin")
+	if (document.pictureInPictureElement === video) {
+		document.exitPictureInPicture()
 		wrapper.classList.remove("picture-in-picture")
 	} else {
-		window.pictureInPictureElement = null
+		video.requestPictureInPicture()
 		// video.exitPictureInPicture()
 		wrapper.classList.add("picture-in-picture")
 	}
@@ -87,6 +87,10 @@ function keyboardAccessHandler(e) {
 		case "i":
 		case "I":
 			toggleMiniPlayer()
+			break
+		case "s":
+		case "S":
+			handleSpeedChange()
 			break
 		case "ArrowLeft":
 			skipTime(-1 * TIME_TEN_SECONDS)
